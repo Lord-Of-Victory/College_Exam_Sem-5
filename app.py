@@ -22,11 +22,18 @@ class Questions(db.Model):
     question=db.Column(db.String,nullable=False,unique=True)
     appear_year=db.Column(db.String,nullable=False)
     frequency=db.Column(db.Integer,nullable=False)
+    answer=db.relationship("Answers",secondary="ques_ans_reln")
 
 class Answers(db.Model):
     __tablename___="answers"
     AID=db.Column(db.Integer,primary_key=True,nullable=False,autoincrement=True,unique=True)
     answer=db.Column(db.String,nullable=False)
+    question=db.relationship("Questions",secondary="ques_ans_reln")
+
+class Ques_Ans_Reln(db.Model):
+    __tablename___="ques_ans_reln"
+    QID=db.Column(db.Integer,db.ForeignKey("questions.QID"),primary_key=True,nullable=False)
+    AID=db.Column(db.Integer,db.ForeignKey("answers.AID"),primary_key=True,nullable=False)
 
 
 #--------------------------------------------- App Routes -------------------------------------------------------
