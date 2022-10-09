@@ -11,9 +11,9 @@
 </head>
 
 <style>
-    * {
-        font-family: monospace, 'Courier New';
-
+    *{
+        font-family:monospace,'Courier New';
+        
     }
 </style>
 
@@ -21,22 +21,25 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                <img src="/static/12-layers.svg" alt="" width="60" height="48" class="d-inline-block align-text-top">
+                <img src="/static/12-layers.svg" alt="" width="60" height="48"
+                    class="d-inline-block align-text-top">
                 <strong style="font-size: 20px;">Project_Exam5</strong>
             </a>
-        </div>
+            <ul class="nav nav-pills" style="font-size: 20px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="">{{active}}</a>
+                </li>
+                {% for i in range(inactive|length) %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/{{inactive[i]}}">{{inactive[i]}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>      
     </nav>
 
-    <div align="center" style="align-items: center;" >
-        <br>
-        {% for i in range(subjects|length) %}
-        <div>
-            <button type="button" class="btn btn-info">
-                <a class="nav-link" href="/{{subjects[i]}}">{{subjects[i]}}</a>
-            </button>
-        </div>
-        <br>
-        {% endfor %}
+    <div>
+        {{question}}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
