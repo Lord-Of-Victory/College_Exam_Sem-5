@@ -41,63 +41,10 @@ class Ques_Ans_Reln(db.Model):
 #*********************************************** Index_Page ********************************************************
 @app.route("/",methods=["GET"])
 def homepage():
+    active="SE"
+    all_subs=["CG","JAVA","ECOM","NS","SE"]
+    inactive=all_subs.remove(active)
     return render_template("homepage.html")
-
-#*********************************************** Signup_Page ********************************************************
-@app.route("/signup",methods=["GET","POST"])
-def signup_page():
-    if request.method == "GET":
-        return render_template("signup_page.html")
-#*********************************************** Login_Page ********************************************************
-@app.route("/login",methods=["GET","POST"])
-def login_page():
-    if request.method == "GET":
-        return render_template("login_page.html")
-
-#*********************************************** User_Summary ********************************************************
-@app.route("/<username>/summary",methods=["GET","POST"])
-def user_summary(username):
-    ""
-
-#*********************************************** User_Homepage ********************************************************
-@app.route("/<username>/user_homepage",methods=["GET","POST"])
-def user_homepage(username):
-    ""
-
-#*********************************************** List_Edit ********************************************************
-@app.route("/<username>/<list_name>/edit",methods=["GET","POST"])
-def edit_list(username,list_name):
-    if request.method=="GET":
-        return render_template("list_edit.html",username=username)
-
-#*********************************************** List_Delete ********************************************************
-@app.route("/<username>/<list_name>/delete",methods=["GET","POST"])
-def delete_list(username,list_name):
-    ""
-
-#*********************************************** List_Add ********************************************************
-@app.route("/<username>/add_list",methods=["GET","POST"])
-def add_list(username):
-    if request.method=="GET":
-        return redirect(url_for('user_homepage',username=username))
-
-#*********************************************** Card_Add ********************************************************
-@app.route("/<username>/<list_name>/add_card",methods=["GET","POST"])
-def add_card(username,list_name):
-    if request.method=="GET":
-        new_lst=[]
-        
-
-#*********************************************** Card_Edit ********************************************************
-@app.route("/<username>/<list_name>/<card_name>/edit",methods=["GET","POST"])
-def edit_card(username,list_name,card_name):
-    if request.method=="GET":
-        new_lst=[]
-
-#*********************************************** Card_Delete ********************************************************
-@app.route("/<username>/<list_name>/<card_name>/delete")
-def delete_card(username,list_name,card_name):
-    ""
 
 #---------------------------------------------- App Run ---------------------------------------------------------
 
