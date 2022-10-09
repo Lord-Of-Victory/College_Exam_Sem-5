@@ -21,6 +21,7 @@ class Questions(db.Model):
     QID=db.Column(db.Integer,primary_key=True,nullable=False,autoincrement=True,unique=True)
     question=db.Column(db.String,nullable=False,unique=True)
     appear_year=db.Column(db.String,nullable=False)
+    subject=db.Column(db.String,nullable=False)
     frequency=db.Column(db.Integer,nullable=False)
     answer=db.relationship("Answers",secondary="ques_ans_reln")
 
@@ -42,9 +43,42 @@ class Ques_Ans_Reln(db.Model):
 @app.route("/",methods=["GET"])
 def homepage():
     active="SE"
-    all_subs=["CG","JAVA","ECOM","NS","SE"]
-    inactive=all_subs.remove(active)
     return render_template("homepage.html")
+
+@app.route("/SE",methods=["GET"])
+def SE():
+    active="SE"
+    all_subs=["CG","JAVA","ECOM","NS","SE"]
+    all_subs.remove(active)
+    return render_template("homepage.html",active=active,inactive=all_subs)
+
+@app.route("/CG",methods=["GET"])
+def CG():
+    active="CG"
+    all_subs=["CG","JAVA","ECOM","NS","SE"]
+    all_subs.remove(active)
+    return render_template("homepage.html",active=active,inactive=all_subs)
+
+@app.route("/JAVA",methods=["GET"])
+def JAVA():
+    active="JAVA"
+    all_subs=["CG","JAVA","ECOM","NS","SE"]
+    all_subs.remove(active)
+    return render_template("homepage.html",active=active,inactive=all_subs)
+
+@app.route("/ECOM",methods=["GET"])
+def ECOM():
+    active="ECOM"
+    all_subs=["CG","JAVA","ECOM","NS","SE"]
+    all_subs.remove(active)
+    return render_template("homepage.html",active=active,inactive=all_subs)
+
+@app.route("/NS",methods=["GET"])
+def NS():
+    active="NS"
+    all_subs=["CG","JAVA","ECOM","NS","SE"]
+    all_subs.remove(active)
+    return render_template("homepage.html",active=active,inactive=all_subs)
 
 #---------------------------------------------- App Run ---------------------------------------------------------
 
