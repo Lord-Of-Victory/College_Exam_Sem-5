@@ -22,19 +22,20 @@ class Questions(db.Model):
     question=db.Column(db.String,nullable=False,unique=True)
     appear_year=db.Column(db.String,nullable=False)
     subject=db.Column(db.String,nullable=False)
+    marks=db.Column(db.Integer,nullable=False)
     frequency=db.Column(db.Integer,nullable=False)
-    #answer=db.relationship("Answers",secondary="ques_ans_reln")
+    answer=db.relationship("Answers",secondary="qar")
 
 class Answers(db.Model):
     __tablename___="answers"
     AID=db.Column(db.Integer,primary_key=True,nullable=False,autoincrement=True,unique=True)
-    answer=db.Column(db.String,nullable=False)
-    #question=db.relationship("Questions",secondary="ques_ans_reln")
+    answer_link=db.Column(db.String,nullable=False)
+    question=db.relationship("Questions",secondary="qar")
 
-#class Ques_Ans_Reln(db.Model):
-#   __tablename___="ques_ans_reln"
-#   QID=db.Column(db.Integer,db.ForeignKey("Questions.QID"),primary_key=True,nullable=False)
-#   AID=db.Column(db.Integer,db.ForeignKey("Answers.AID"),primary_key=True,nullable=False)
+class QAR(db.Model):
+   __tablename___="qar"
+   QID=db.Column(db.Integer,db.ForeignKey("questions.QID"),primary_key=True,nullable=False)
+   AID=db.Column(db.Integer,db.ForeignKey("answers.AID"),primary_key=True,nullable=False)
 
 
 #-------------------------------------------- App Functions -------------------------------------------------------
